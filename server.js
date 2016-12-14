@@ -12,11 +12,11 @@ storage.add('beans', 2.5);
 storage.add('tomatoes', 5);
 storage.add('peppers', 3);
 
-app.get('/items', (req, res) => {
+app.get('/shopping-list', (req, res) => {
   res.json(storage.getItems());
 });
 
-app.post('/items', jsonParser, (req, res) => {
+app.post('/shopping-list', jsonParser, (req, res) => {
   // ensure `name` and `budget` are in request body
   const requiredFields = ['name', 'budget'];
   for (let i=0; i<requiredFields.length; i++) {
@@ -33,7 +33,7 @@ app.post('/items', jsonParser, (req, res) => {
 });
 
 
-app.delete('/items/:id', (req, res) => {
+app.delete('/shopping-list/:id', (req, res) => {
   storage.deleteItem(req.params.id);
   console.log(`Deleted shopping list item \`${req.params.ID}\``);
   res.status(204).end();
